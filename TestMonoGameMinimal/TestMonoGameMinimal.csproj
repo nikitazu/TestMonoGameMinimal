@@ -52,6 +52,7 @@
     <Compile Include="Components\GameContext.cs" />
     <Compile Include="Components\IMonoGameComponent.cs" />
     <Compile Include="Components\MonoGameComponent.cs" />
+    <Compile Include="Components\MusicPlayerComponent.cs" />
     <Compile Include="Components\SpriteBoxComponent.cs" />
     <Compile Include="Components\TextureBoxComponent.cs" />
     <Compile Include="MyGame.cs" />
@@ -64,7 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Героиня-А-аватар-256-384.png" />
+    <Content Include="Content\sounds\bodyimpact.mp3" />
+    <Content Include="Content\sounds\heartbeat.mp3" />
+    <Content Include="Content\music\Lesson12.mp3" />
+    <Content Include="Content\sprites\Героиня-А-аватар-256-384.png" />
     <Content Include="ReadMe.MonoGame.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

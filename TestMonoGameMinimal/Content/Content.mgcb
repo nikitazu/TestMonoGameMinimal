@@ -13,7 +13,25 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Героиня-А-аватар-256-384.png
+#begin sounds/bodyimpact.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/bodyimpact.mp3
+
+#begin sounds/heartbeat.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/heartbeat.mp3
+
+#begin music/Lesson12.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/Lesson12.mp3
+
+#begin sprites/Героиня-А-аватар-256-384.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,5 +41,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Героиня-А-аватар-256-384.png
+/build:sprites/Героиня-А-аватар-256-384.png
 

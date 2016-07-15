@@ -20,6 +20,7 @@ namespace TestMonoGameMinimal
             _context = new GameContext(this);
             _context.Components.Add(new TextureBoxComponent(_context));
             _context.Components.Add(new SpriteBoxComponent(_context));
+            _context.Components.Add(new MusicPlayerComponent(_context));
 
             IsFixedTimeStep = true;
             _graphics.SynchronizeWithVerticalRetrace = true;
