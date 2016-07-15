@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace TestMonoGameMinimal
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            using (var game = new MyGame())
+            {
+                game.Run();
+            }
         }
     }
 }
