@@ -9,6 +9,9 @@ namespace TestMonoGameMinimal
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _sprites;
 
+        private Texture2D _texture;
+        private Vector2 _position;
+
         /// <summary>
         /// Create a game.
         /// </summary>
@@ -23,6 +26,15 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Initialize()
         {
+            _position = new Vector2(0, 0);
+            _texture = new Texture2D(GraphicsDevice, 100, 100);
+            Color[] colors = new Color[100 * 100];
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = Color.OrangeRed;
+            }
+            _texture.SetData(colors);
+
             base.Initialize();
         }
 
@@ -53,6 +65,9 @@ namespace TestMonoGameMinimal
             {
                 Exit();
             }
+
+            _position.X = _position.X >= GraphicsDevice.Viewport.Width ? -_texture.Width : _position.X + 5;
+
             base.Update(gameTime);
         }
 
@@ -62,6 +77,11 @@ namespace TestMonoGameMinimal
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _sprites.Begin();
+            _sprites.Draw(_texture, _position);
+            _sprites.End();
+
             base.Draw(gameTime);
         }
     }
