@@ -21,6 +21,9 @@ namespace TestMonoGameMinimal
             _context = new GameContext(this);
             _simpleTextureBox = new TextureBoxComponent(_context);
 
+            IsFixedTimeStep = true;
+            _graphics.SynchronizeWithVerticalRetrace = true;
+
             Content.RootDirectory = "Content";
         }
 
@@ -57,6 +60,7 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Update(GameTime gameTime)
         {
+            _context.Update(gameTime);
             if (IsActive)
             {
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
@@ -76,6 +80,7 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Draw(GameTime gameTime)
         {
+            _context.Draw(gameTime);
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _context.Sprites.Begin();

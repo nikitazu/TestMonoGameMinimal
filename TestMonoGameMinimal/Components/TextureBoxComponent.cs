@@ -5,7 +5,7 @@ namespace TestMonoGameMinimal.Components
 {
     public class TextureBoxComponent : MonoGameComponent
     {
-        private const int _speed = 5;
+        private const int _speed = 200;
         private Texture2D _texture;
         private Vector2 _position;
 
@@ -29,7 +29,7 @@ namespace TestMonoGameMinimal.Components
         protected override void Update()
         {
             base.Update();
-            _position.X = _position.X >= Context.Game.GraphicsDevice.Viewport.Width ? -_texture.Width : _position.X + _speed;
+            _position.X = _position.X >= Context.Game.GraphicsDevice.Viewport.Width ? -_texture.Width : _position.X + _speed * (float)Context.UpdateTime.ElapsedGameTime.TotalSeconds;
         }
 
         protected override void Draw()
