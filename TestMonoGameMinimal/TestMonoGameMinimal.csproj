@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\GameContext.cs" />
+    <Compile Include="Components\IMonoGameComponent.cs" />
+    <Compile Include="Components\MonoGameComponent.cs" />
+    <Compile Include="Components\TextureBoxComponent.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,16 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TestMonoGameMinimal.Components;
 
 namespace TestMonoGameMinimal
 {
     public class MyGame : Game
     {
         private readonly GraphicsDeviceManager _graphics;
-        private SpriteBatch _sprites;
-
-        private Texture2D _texture;
-        private Vector2 _position;
+        private readonly GameContext _context;
+        private readonly IMonoGameComponent _simpleTextureBox;
 
         /// <summary>
         /// Create a game.
@@ -18,6 +17,9 @@ namespace TestMonoGameMinimal
         public MyGame()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _context = new GameContext(this);
+            _simpleTextureBox = new TextureBoxComponent(_context);
+
             Content.RootDirectory = "Content";
         }
 
@@ -26,16 +28,8 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Initialize()
         {
-            _position = new Vector2(0, 0);
-            _texture = new Texture2D(GraphicsDevice, 100, 100);
-            Color[] colors = new Color[100 * 100];
-            for (int i = 0; i < colors.Length; i++)
-            {
-                colors[i] = Color.OrangeRed;
-            }
-            _texture.SetData(colors);
-
             base.Initialize();
+            _simpleTextureBox.Initialize();
         }
 
         /// <summary>
@@ -44,7 +38,8 @@ namespace TestMonoGameMinimal
         protected override void LoadContent()
         {
             base.LoadContent();
-            _sprites = new SpriteBatch(GraphicsDevice);
+            _context.Load();
+            _simpleTextureBox.Load();
         }
 
         /// <summary>
@@ -53,6 +48,7 @@ namespace TestMonoGameMinimal
         protected override void UnloadContent()
         {
             base.UnloadContent();
+            _simpleTextureBox.Unload();
         }
 
         /// <summary>
@@ -66,7 +62,7 @@ namespace TestMonoGameMinimal
                 Exit();
             }
 
-            _position.X = _position.X >= GraphicsDevice.Viewport.Width ? -_texture.Width : _position.X + 5;
+            _simpleTextureBox.Update();
 
             base.Update(gameTime);
         }
@@ -78,9 +74,9 @@ namespace TestMonoGameMinimal
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _sprites.Begin();
-            _sprites.Draw(_texture, _position);
-            _sprites.End();
+            _context.Sprites.Begin();
+            _simpleTextureBox.Draw();
+            _context.Sprites.End();
 
             base.Draw(gameTime);
         }
