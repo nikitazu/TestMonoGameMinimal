@@ -67,8 +67,11 @@ namespace TestMonoGameMinimal
                 {
                     Exit();
                 }
-                _context.Update(gameTime);
-                base.Update(gameTime);
+                else
+                {
+                    _context.Update(gameTime);
+                    base.Update(gameTime);
+                }
             }
         }
 
