@@ -11,6 +11,7 @@ namespace TestMonoGameMinimal
         private readonly GraphicsDeviceManager _graphics;
         private readonly GameContext _context;
         private readonly IMonoGameComponent _simpleTextureBox;
+        private readonly IMonoGameComponent _simpleSpriteBox;
 
         /// <summary>
         /// Create a game.
@@ -20,6 +21,7 @@ namespace TestMonoGameMinimal
             _graphics = new GraphicsDeviceManager(this);
             _context = new GameContext(this);
             _simpleTextureBox = new TextureBoxComponent(_context);
+            _simpleSpriteBox = new SpriteBoxComponent(_context);
 
             IsFixedTimeStep = true;
             _graphics.SynchronizeWithVerticalRetrace = true;
@@ -34,6 +36,7 @@ namespace TestMonoGameMinimal
         {
             base.Initialize();
             _simpleTextureBox.Initialize();
+            _simpleSpriteBox.Initialize();
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace TestMonoGameMinimal
             base.LoadContent();
             _context.Load();
             _simpleTextureBox.Load();
+            _simpleSpriteBox.Load();
         }
 
         /// <summary>
@@ -53,6 +57,8 @@ namespace TestMonoGameMinimal
         {
             base.UnloadContent();
             _simpleTextureBox.Unload();
+            _simpleSpriteBox.Unload();
+            Content.Unload();
         }
 
         /// <summary>
@@ -70,6 +76,7 @@ namespace TestMonoGameMinimal
                 }
 
                 _simpleTextureBox.Update();
+                _simpleSpriteBox.Update();
 
                 base.Update(gameTime);
             }
@@ -85,6 +92,7 @@ namespace TestMonoGameMinimal
 
             _context.Sprites.Begin();
             _simpleTextureBox.Draw();
+            _simpleSpriteBox.Draw();
             _context.Sprites.End();
 
             base.Draw(gameTime);
