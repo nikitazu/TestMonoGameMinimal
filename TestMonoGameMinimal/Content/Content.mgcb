@@ -43,3 +43,9 @@
 /processorParam:TextureFormat=Color
 /build:sprites/Героиня-А-аватар-256-384.png
 
+#begin fonts/opensans-regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:fonts/opensans-regular.spritefont
+

@@ -62,6 +62,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="Content\fonts\opensans-regular.ttf" />
+    <None Include="Content\fonts\opensans-regular.spritefont" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

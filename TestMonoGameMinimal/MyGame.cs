@@ -10,6 +10,7 @@ namespace TestMonoGameMinimal
     {
         private readonly GraphicsDeviceManager _graphics;
         private readonly GameContext _context;
+        private SpriteFont _font;
 
         /// <summary>
         /// Create a game.
@@ -44,6 +45,7 @@ namespace TestMonoGameMinimal
         {
             base.LoadContent();
             _context.Load();
+            _font = Content.Load<SpriteFont>("fonts/opensans-regular");
         }
 
         /// <summary>
@@ -85,6 +87,13 @@ namespace TestMonoGameMinimal
 
             _context.Sprites.Begin();
             _context.Draw(gameTime);
+
+            _context.Sprites.DrawString(
+                _font,
+                "Hello, MonoGame! Русский текст, тоже пашет?",
+                new Vector2(10, Window.ClientBounds.Height - 50),
+                Color.Black);
+
             _context.Sprites.End();
 
             base.Draw(gameTime);
