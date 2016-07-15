@@ -10,8 +10,6 @@ namespace TestMonoGameMinimal
     {
         private readonly GraphicsDeviceManager _graphics;
         private readonly GameContext _context;
-        private readonly IMonoGameComponent _simpleTextureBox;
-        private readonly IMonoGameComponent _simpleSpriteBox;
 
         /// <summary>
         /// Create a game.
@@ -20,8 +18,8 @@ namespace TestMonoGameMinimal
         {
             _graphics = new GraphicsDeviceManager(this);
             _context = new GameContext(this);
-            _simpleTextureBox = new TextureBoxComponent(_context);
-            _simpleSpriteBox = new SpriteBoxComponent(_context);
+            _context.Components.Add(new TextureBoxComponent(_context));
+            _context.Components.Add(new SpriteBoxComponent(_context));
 
             IsFixedTimeStep = true;
             _graphics.SynchronizeWithVerticalRetrace = true;
@@ -35,8 +33,7 @@ namespace TestMonoGameMinimal
         protected override void Initialize()
         {
             base.Initialize();
-            _simpleTextureBox.Initialize();
-            _simpleSpriteBox.Initialize();
+            _context.Initialize();
         }
 
         /// <summary>
@@ -46,8 +43,6 @@ namespace TestMonoGameMinimal
         {
             base.LoadContent();
             _context.Load();
-            _simpleTextureBox.Load();
-            _simpleSpriteBox.Load();
         }
 
         /// <summary>
@@ -56,8 +51,7 @@ namespace TestMonoGameMinimal
         protected override void UnloadContent()
         {
             base.UnloadContent();
-            _simpleTextureBox.Unload();
-            _simpleSpriteBox.Unload();
+            _context.Unload();
             Content.Unload();
         }
 
@@ -66,7 +60,6 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Update(GameTime gameTime)
         {
-            _context.Update(gameTime);
             if (IsActive)
             {
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
@@ -74,10 +67,7 @@ namespace TestMonoGameMinimal
                 {
                     Exit();
                 }
-
-                _simpleTextureBox.Update();
-                _simpleSpriteBox.Update();
-
+                _context.Update(gameTime);
                 base.Update(gameTime);
             }
         }
@@ -87,12 +77,10 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Draw(GameTime gameTime)
         {
-            _context.Draw(gameTime);
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _context.Sprites.Begin();
-            _simpleTextureBox.Draw();
-            _simpleSpriteBox.Draw();
+            _context.Draw(gameTime);
             _context.Sprites.End();
 
             base.Draw(gameTime);
