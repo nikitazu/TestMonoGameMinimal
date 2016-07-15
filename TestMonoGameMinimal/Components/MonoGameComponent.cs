@@ -34,14 +34,24 @@
             Draw();
         }
 
-        protected abstract void Initialize();
+        protected virtual void Initialize()
+        {
+        }
 
-        protected abstract void Load();
+        protected virtual void Load()
+        {
+        }
 
-        protected abstract void Unload();
+        protected virtual void Unload()
+        {
+        }
 
-        protected abstract void Update();
+        protected virtual void Update()
+        {
+        }
 
-        protected abstract void Draw();
+        protected virtual void Draw()
+        {
+        }
     }
 }
