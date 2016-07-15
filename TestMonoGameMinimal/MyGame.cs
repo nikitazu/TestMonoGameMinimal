@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using TestMonoGameMinimal.Components;
 
 namespace TestMonoGameMinimal
@@ -56,15 +57,18 @@ namespace TestMonoGameMinimal
         /// </summary>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (IsActive)
             {
-                Exit();
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                    || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                {
+                    Exit();
+                }
+
+                _simpleTextureBox.Update();
+
+                base.Update(gameTime);
             }
-
-            _simpleTextureBox.Update();
-
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -79,6 +83,18 @@ namespace TestMonoGameMinimal
             _context.Sprites.End();
 
             base.Draw(gameTime);
+        }
+
+        protected override void OnActivated(object sender, EventArgs args)
+        {
+            base.OnActivated(sender, args);
+            Window.Title = "Active app";
+        }
+
+        protected override void OnDeactivated(object sender, EventArgs args)
+        {
+            base.OnDeactivated(sender, args);
+            Window.Title = "Inactive app";
         }
     }
 }
